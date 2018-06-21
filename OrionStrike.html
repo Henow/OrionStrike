@@ -45,6 +45,8 @@
         var nextFire = 0;
         var projectile;
         var gameround = 0;
+        var health1 = 4;
+        var health2 = 4;
 
         function create() {
             //Um das Physiksystem von Phaser ARCADE zu nutzen
@@ -149,7 +151,11 @@
             var hitPlatform = game.physics.arcade.collide(player, platforms);
             
             var hitPlatform = game.physics.arcade.collide(player2, platforms);
-
+            
+            game.physics.arcade.collide(player2, schuss, collisionHandler, null, this);
+            
+            game.physics.arcade.collide(player, schuss2, collisionHandler2, null, this);
+            
             if (gameround == 0) {
                 
                 //Die Rotation der Waffe einstellen
@@ -195,8 +201,6 @@
                 
                 if (cursors.left.isDown) {
                     
-                    //Die Rotation der Waffe einstellen
-                    sprite.rotation = game.physics.arcade.angleToPointer(player2);
 
                     //die bewegungen des spielers.
                     player2.body.velocity.x = 0;
@@ -252,6 +256,9 @@
                 schiessen.reset(player.x - 8, player.y - 8);
 
                 game.physics.arcade.moveToPointer(schiessen, 400);
+                    
+                player.body.velocity.x = 0;
+                    
                 
                 gameround = 1;
                     
@@ -259,23 +266,36 @@
                     
                     nextFire = game.time.now + fireRate;
 
-                    var schiessen2 = schuss.getFirstDead();
+                    var schiessen2 = schuss2.getFirstDead();
 
                     schiessen2.reset(player2.x - 8, player2.y - 8);
 
                     game.physics.arcade.moveToPointer(schiessen2, 400);
+                    
+                    player2.body.velocity.x = 0;
                     
                     gameround = 0;
                 }
                 update();
             }
         }
-
-
-
+        
         function render() {
 
-            game.debug.spriteInfo(sprite, 32, 32);
+        //    game.debug.spriteInfo(sprite, 32, 32);
+            game.debug.bodyInfo(player, 32, 32);
+            
+            game.debug.body(player);
+            game.debug.body(player2);
+            game.debug.body(schuss);
+        }
+        
+        function collisionHandler (player, schuss) {
+            game.stage.backgroundColor = '#992d2d';
+        }
+        
+        function collisionHandler2 (player, schuss) {
+            game.stage.backgroundColor = '#0072bc';
         }
 
 /*function fire() {

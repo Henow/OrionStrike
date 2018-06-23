@@ -47,10 +47,10 @@ var playState = {
 
 
 		this.keyboard = game.input.keyboard;
-		this.player = game.add.sprite(16,16,'player');
+		this.player = game.add.sprite(16,16,'schuss');
 		game.physics.arcade.enable(this.player);
 
-		this.win = game.add.sprite(256,256,'win');
+		this.win = game.add.sprite(256,256,'schuss');
 		game.physics.arcade.enable(this.win);
 
 		//Der Spieler und seine Position

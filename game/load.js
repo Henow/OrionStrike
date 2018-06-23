@@ -15,6 +15,7 @@ var loadState = {
         game.load.spritesheet('healthBar', 'assets/Healthbar.png', 38, 14, 5);
         game.load.spritesheet('player1Bullet', 'assets/player1Bullet.png', 11, 11, 1);
         game.load.spritesheet('player2Bullet', 'assets/player2Bullet.png', 11, 11, 1);
+        game.load.image('bg1', 'assets/bg1.png');
 	},
 
 	create:function(){

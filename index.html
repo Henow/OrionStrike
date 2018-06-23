@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Menu game</title>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
+
+        <script type="text/javascript" src="game/boot.js"></script>
+        <script type="text/javascript" src="game/load.js"></script>
+        <script type="text/javascript" src="game/menu.js"></script>
+        <script type="text/javascript" src="game/level1.js"></script>
+        <script type="text/javascript" src="game/win.js"></script>
+        <script>
+          var game = new Phaser.Game(800,600,Phaser.AUTO,'Orion Strike');
+
+          game.state.add('boot', bootState);
+          game.state.add('load', loadState);
+          game.state.add('menu', menuState);
+          game.state.add('level1', playState);
+          game.state.add('win',  winState);
+
+          game.state.start('boot');
+        </script>
+    </head>
+
+    <body>
+    	<div id='OrionStrike'></div>
+
+    </body>
+</html>

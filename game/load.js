@@ -12,7 +12,7 @@ var loadState = {
         game.load.spritesheet('player2Model', 'assets/player2Model.png', 50, 50, 1);
         game.load.spritesheet('player1Weapon', 'assets/player1Weapon.png', 32, 13, 1);
         game.load.spritesheet('player2Weapon', 'assets/player2Weapon.png', 32, 16, 1);
-        game.load.spritesheet('healthBar', 'assets/Healthbar.png', 38, 14, 4);
+        game.load.spritesheet('healthBar', 'assets/Healthbar.png', 38, 14, 5);
         game.load.spritesheet('player1Bullet', 'assets/player1Bullet.png', 11, 11, 1);
         game.load.spritesheet('player2Bullet', 'assets/player2Bullet.png', 11, 11, 1);
 	},

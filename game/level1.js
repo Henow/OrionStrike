@@ -21,7 +21,8 @@ var health1 = 4;
 var health2 = 4;
 var playerName1;
 var playerName2;
-var hbf2 = 0;
+var hitCounterP1 = 0;
+var hitCounterP2 = 0;
 
 var playState = {
 	create:function(){
@@ -55,8 +56,10 @@ var playState = {
 
 		//Der Spieler und seine Position
 		player = game.add.sprite(32, game.world.height - 150, 'player1Model');
-		var hover = player.animations.add('hover');
-		hover.frameRate = 5;
+		//var hover = player.animations.add('hover');
+		player.animations.add('hover', [1,2,3,4,5,6,7], 7, true);
+		player.animations.add('jump', [2], 1, true);
+		//hover.frameRate = 5;
 
 		//physic für den spieler einstellen.
 		game.physics.enable(player);
@@ -68,8 +71,16 @@ var playState = {
 		
 		//Sprite für die Healthbar
 		hb1 = game.make.sprite(7, -15, 'healthBar');
+        hb1.animations.add('health1', [3], 1, true);
+        hb1.animations.add('health2', [2], 1, true);
+        hb1.animations.add('health3', [1], 1, true);
+        hb1.animations.add('health4', [0], 1, true);
 		hb1.anchor.setTo(0, 0);
 		hb2 = game.make.sprite(7, -15, 'healthBar');
+        hb2.animations.add('health1', [3], 1, true);
+        hb2.animations.add('health2', [2], 1, true);
+        hb2.animations.add('health3', [1], 1, true);
+        hb2.animations.add('health4', [0], 1, true);
 		hb2.anchor.setTo(0, 0);
 
 		//Sprite für die Waffe
@@ -169,14 +180,63 @@ var playState = {
 		this.win.body.immovable = true;
 		game.physics.arcade.collide(this.player,this.win,this.Finish,null,this);
 
-		 //verhindern dass player und platforms collide
-		 var hitPlatform = game.physics.arcade.collide(player, platforms);
+		//verhindern dass player und platforms collide
+		var hitPlatform = game.physics.arcade.collide(player, platforms);
             
-		 var hitPlatform = game.physics.arcade.collide(player2, platforms);
+		var hitPlatform = game.physics.arcade.collide(player2, platforms);
 		 
-		 game.physics.arcade.collide(player2, schuss, this.collisionHandler, null, this);
+		game.physics.arcade.collide(player2, schuss, this.collisionHandler, null, this);
 		 
-		 game.physics.arcade.collide(player, schuss2, this.collisionHandler2, null, this);
+        game.physics.arcade.collide(player, schuss2, this.collisionHandler2, null, this);
+        
+        game.physics.arcade.collide(schuss, platforms, this.bulletHandler, null, this);
+        
+        game.physics.arcade.collide(schuss2, platforms, this.bulletHandler, null, this);
+        
+        switch (hitCounterP1) {
+            case 0:
+                hb1.animations.play('health4');
+                break;
+            case 1:
+                hb1.animations.play('health3');
+                break;
+            case 2:
+                hb1.animations.play('health2');
+                break;
+            case 3:
+                hb1.animations.play('health1');
+                break;
+            case 4:
+                //player.kill();
+                this.Finish();
+                hitCounterP1 = 0;
+                hitCounterP2 = 0;
+                break;
+        }
+        
+        switch (hitCounterP2) {
+            case 0:
+                hb2.animations.play('health4');
+                break;
+            case 1:
+                hb2.animations.play('health3');
+                break;
+            case 2:
+                hb2.animations.play('health2');
+                break;
+            case 3:
+                hb2.animations.play('health1');
+                break;
+            case 4:
+                //Spiel beenden und Leben wieder auffüllen
+                this.Finish();
+                hitCounterP1 = 0;
+                hitCounterP2 = 0;
+                break;
+        }
+        if (hitCounterP1 == 0) {
+            hb1.animations.play('health4');
+        }
 		 
 		 if (gameround == 0) {
 			 
@@ -208,6 +268,7 @@ var playState = {
 			 // Allow the player to jump if they are touching the ground.
 			 if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
 				 player.body.velocity.y = -200;
+                 player.animations.play('jump');
 				 
 			 //         weapon.angle -= 10;
 				 
@@ -277,7 +338,6 @@ var playState = {
 			game.physics.arcade.moveToPointer(schiessen, 400);
 				
 			player.body.velocity.x = 0;
-				
 			
 			gameround = 1;
 				
@@ -304,8 +364,7 @@ var playState = {
 			schuss.kill();
 			health2--;
 			scoreText2.text = 'HP '+playerName2 +' : ' +health2;
-			hb2.setFrame(++hbf2); 
-
+			hitCounterP2++;
 	},
 
 	collisionHandler2:function (player, schuss) {
@@ -313,12 +372,12 @@ var playState = {
 		schuss.kill();
 		health1--;
 		scoreText.text = 'HP '+playerName1 +' : ' +health1;
+        hitCounterP1++;
 	},
 
-	
-
-
-
+	bulletHandler:function (schuss, platforms) {
+        schuss.kill();
+    },
 
 	Finish:function(){
 		game.state.start('win');

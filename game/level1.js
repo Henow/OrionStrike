@@ -57,8 +57,9 @@ var playState = {
 		//Der Spieler und seine Position
 		player = game.add.sprite(32, game.world.height - 150, 'player1Model');
 		//var hover = player.animations.add('hover');
-		player.animations.add('hover', [1,2,3,4,5,6,7], 7, true);
+		player.animations.add('hover', [0,1,2,3,4,5], 7, true);
 		player.animations.add('jump', [2], 1, true);
+        player.animations.add('explosion' [6,7,8,9,10,11,12], 10, false, true);
 		//hover.frameRate = 5;
 
 		//physic für den spieler einstellen.
@@ -104,6 +105,7 @@ var playState = {
 		
 		//Der Spieler und seine Position
 		player2 = game.add.sprite(500, game.world.height - 150, 'player2Model');
+        player2.animations.add('explosion' [2,3,4,5,6,7,8], 10, false, true);
 
 		//physic für den spieler einstellen.
 		game.physics.enable(player2);
@@ -207,10 +209,13 @@ var playState = {
                 hb1.animations.play('health1');
                 break;
             case 4:
-                //player.kill();
+                //Spiel beenden und Leben wieder auffüllen
+                player.animations.play('explosion');
+                
                 this.Finish();
                 hitCounterP1 = 0;
                 hitCounterP2 = 0;
+                
                 break;
         }
         
@@ -228,10 +233,12 @@ var playState = {
                 hb2.animations.play('health1');
                 break;
             case 4:
-                //Spiel beenden und Leben wieder auffüllen
+                player2.animations.play('explosion');
+                
                 this.Finish();
                 hitCounterP1 = 0;
                 hitCounterP2 = 0;
+                
                 break;
         }
         if (hitCounterP1 == 0) {

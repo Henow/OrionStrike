@@ -8,8 +8,8 @@ var loadState = {
         game.load.image('waffe', 'assets/weapon.png');
         game.load.image('schuss', 'assets/Schuss.png');
         game.load.image('background', 'assets/hintergrund.png');
-        game.load.spritesheet('player1Model', 'assets/player1Model.png', 50, 50, 7);
-        game.load.spritesheet('player2Model', 'assets/player2Model.png', 50, 50, 1);
+        game.load.spritesheet('player1Model', 'assets/player1Model.png', 50, 50, 13);
+        game.load.spritesheet('player2Model', 'assets/player2Model.png', 50, 50, 8);
         game.load.spritesheet('player1Weapon', 'assets/player1Weapon.png', 32, 13, 1);
         game.load.spritesheet('player2Weapon', 'assets/player2Weapon.png', 32, 16, 1);
         game.load.spritesheet('healthBar', 'assets/Healthbar.png', 38, 14, 5);

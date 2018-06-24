@@ -9,11 +9,14 @@ var menuState = {
 
 		var wkey = game.input.keyboard.addKey(Phaser.Keyboard.W);
 
+        this.startMusic = this.add.audio("startSound", 1, true, true);
+
 		wkey.onDown.addOnce(this.start,this);
 
 	},
 
 	start:function(){
+	    this.startSound.play("",0,1,false);
 		game.state.start('level1');
 	}
 }

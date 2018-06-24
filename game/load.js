@@ -17,6 +17,14 @@ var loadState = {
         game.load.spritesheet('player2Bullet', 'assets/player2Bullet.png', 11, 11, 1);
         game.load.image('bg1', 'assets/bg1.png');
         game.load.image('abc', 'assets/abc.png');
+
+        //Sounds
+        game.load.audio('bulletDie', 'assets/sounds/BulletDie.wav');
+        game.load.audio('explosionPlayer1', 'assets/sounds/ExplosionPlayer1.wav');
+        game.load.audio('explosionPlayer2', 'assets/sounds/ExplosionPlayer2.wav');
+        game.load.audio('shotPlayer1', 'assets/sounds/Laser_ShootPlayer1.wav');
+        game.load.audio('shotPlayer2', 'assets/sounds/Laser_shootPlayer2.wav');
+        game.load.audio('startSound', 'assets/sounds/StartSound.wav');
 	},
 
 	create:function(){

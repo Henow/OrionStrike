@@ -16,6 +16,7 @@ var loadState = {
         game.load.spritesheet('player1Bullet', 'assets/player1Bullet.png', 11, 11, 1);
         game.load.spritesheet('player2Bullet', 'assets/player2Bullet.png', 11, 11, 1);
         game.load.image('bg1', 'assets/bg1.png');
+        game.load.image('abc', 'assets/abc.png');
 	},
 
 	create:function(){

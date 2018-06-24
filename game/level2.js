@@ -26,15 +26,15 @@ var hitCounterP2 = 0;
 var winner;
 
 
-var playState = {
+var playState2 = {
 
 
 
 	create:function(){
 
 		//hintergrund für das Spiel
-		//game.stage.backgroundColor = '#0072bc';
-		game.add.tileSprite(0, 0, 1800, 1200, 'bg1');
+		game.stage.backgroundColor = '#0072bc';
+	//	game.add.tileSprite(0, 0, 1800, 1200, 'bg1');
 	//	game.add.tileSprite(0, 0, 1000, 600, 'background');
 		game.world.setBounds(0, 0, 1800, 1200);
 
@@ -167,7 +167,6 @@ var playState = {
 		hb2.anchor.setTo(0.5, 0.5);
 
 		game.camera.follow(player);
-
 	},
     
 
@@ -203,9 +202,8 @@ var playState = {
                 hb1.animations.play('health1');
                 break;
             case 4:
-				//Spiel beenden und Leben wieder auffüllen
-				this.game.time.events.add(1000, player.animations.play('explosion'));
-				
+                //Spiel beenden und Leben wieder auffüllen
+                player.animations.play('explosion');
                 
                 this.Finish();
                 hitCounterP1 = 0;
@@ -228,8 +226,7 @@ var playState = {
                 hb2.animations.play('health1');
                 break;
             case 4:
-				player2.animations.play('explosion');
-				
+                player2.animations.play('explosion');
                 
                 this.Finish();
                 hitCounterP1 = 0;
@@ -420,9 +417,9 @@ var playState = {
 
 	Finish:function(){
 		if (gameround == 0) {
-			game.state.start('win2');
+			game.state.start('win');
 		} else {
-		game.state.start('win');
+		game.state.start('win2');
 		}
 	},
 

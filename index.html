@@ -11,7 +11,9 @@
         <script type="text/javascript" src="game/load.js"></script>
         <script type="text/javascript" src="game/menu.js"></script>
         <script type="text/javascript" src="game/level1.js"></script>
+        <script type="text/javascript" src="game/level2.js"></script>
         <script type="text/javascript" src="game/win.js"></script>
+        <script type="text/javascript" src="game/win2.js"></script>
         <script>
           var game = new Phaser.Game(800,600,Phaser.AUTO,'Orion Strike');
 
@@ -19,7 +21,9 @@
           game.state.add('load', loadState);
           game.state.add('menu', menuState);
           game.state.add('level1', playState);
+          game.state.add('level2', playState2);
           game.state.add('win',  winState);
+          game.state.add('win2', winState2);
 
           game.state.start('boot');
         </script>

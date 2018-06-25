@@ -167,6 +167,12 @@ var playState = {
 		hb2.anchor.setTo(0.5, 0.5);
 
 		game.camera.follow(player);
+        
+        this.bulletDie = this.add.audio('bulletDie', 1, false, true);
+        this.explosionP1 = this.add.audio('explosionPlayer1', 1, false, true);
+        this.explosionP2 = this.add.audio('explosionPlayer2', 1, false, true);
+        this.shotP1 = this.add.audio('shotPlayer1', 1, false, true);
+        this.shotP2 = this.add.audio('shotPlayer2', 1, false, true);
 
 	},
     
@@ -205,7 +211,7 @@ var playState = {
             case 4:
 				//Spiel beenden und Leben wieder auffüllen
 				this.game.time.events.add(1000, player.animations.play('explosion'));
-				
+				this.explosionP1.play();
                 
                 this.Finish();
                 hitCounterP1 = 0;
@@ -230,7 +236,7 @@ var playState = {
             case 4:
 				player2.animations.play('explosion');
 				
-                
+                this.explosionP2.play();
                 this.Finish();
                 hitCounterP1 = 0;
                 hitCounterP2 = 0;
@@ -351,7 +357,8 @@ var playState = {
 			var schiessen = schuss.getFirstDead();
 
 			schiessen.reset(player.x - 8, player.y - 8);
-
+                
+            this.shotP1.play();
 			game.physics.arcade.moveToPointer(schiessen, 800);
 			
 			player.body.velocity.x = 0;
@@ -376,8 +383,8 @@ var playState = {
 
 				schiessen2.reset(player2.x - 8, player2.y - 8);
 
+                this.shotP2.play();
 				game.physics.arcade.moveToPointer(schiessen2, 800);
-				
 				
 				player2.body.velocity.x = 0;
 
@@ -395,7 +402,8 @@ var playState = {
 
 	collisionHandler:function (player, schuss) {
 		//game.stage.backgroundColor = '#992d2d';
-			schuss.kill();
+			//schuss.kill();
+        this.removeSchuss2(schuss);
 			health2--;
 		//	scoreText2.text = 'HP '+playerName2 +' : ' +health2;
 			hitCounterP2++;
@@ -413,6 +421,7 @@ var playState = {
 
 	bulletHandler:function (schuss, platforms) {
 		schuss.kill();
+        this.bulletDie.play();
 		if (gameround == 0) {
 			this.camera.follow(player);
 		} else this.camera.follow(player2);
@@ -428,11 +437,13 @@ var playState = {
 
 	removeSchuss:function(schuss) {
 		schuss.kill();
+        this.bulletDie.play();
 		this.camera.follow(player);
 	},
 
 	removeSchuss2:function(schuss) {
 		schuss.kill();
+        this.bulletDie.play();
 		this.camera.follow()
 	}
 

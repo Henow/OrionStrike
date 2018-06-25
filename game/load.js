@@ -25,6 +25,7 @@ var loadState = {
         game.load.audio('shotPlayer1', 'assets/sounds/Laser_ShootPlayer1.wav');
         game.load.audio('shotPlayer2', 'assets/sounds/Laser_shootPlayer2.wav');
         game.load.audio('startSound', 'assets/sounds/StartSound.wav');
+        game.load.audio('backgroundMusic', 'assets/sounds/BackgroundMusic.wav');
 	},
 
 	create:function(){

@@ -25,7 +25,6 @@ var hitCounterP1 = 0;
 var hitCounterP2 = 0;
 var winner;
 
-
 var playState = {
 
 
@@ -173,6 +172,8 @@ var playState = {
         this.explosionP2 = this.add.audio('explosionPlayer2', 1, false, true);
         this.shotP1 = this.add.audio('shotPlayer1', 1, false, true);
         this.shotP2 = this.add.audio('shotPlayer2', 1, false, true);
+        this.bgMusic = this.add.audio('backgroundMusic', 1, true, true);
+        this.backgroundMusic();
 
 	},
     
@@ -194,6 +195,8 @@ var playState = {
         game.physics.arcade.collide(schuss, platforms, this.bulletHandler, null, this);
         
         game.physics.arcade.collide(schuss2, platforms, this.bulletHandler, null, this);
+        
+        //this.backgroundMusic();
         
         switch (hitCounterP1) {
             case 0:
@@ -251,8 +254,7 @@ var playState = {
 
 		//	this.camera.follow(player);
 
-			 
-			 //Die Rotation der Waffe einstellen
+            //Die Rotation der Waffe einstellen
 			 sprite.rotation = game.physics.arcade.angleToPointer(player);
 
 			 //die bewegungen des spielers.
@@ -263,13 +265,11 @@ var playState = {
 				 player.body.velocity.x = -100;
 				 this.camera.follow(player);
 				 // player.animations.play('left');
-
-
+                
 			 } else if (cursors.right.isDown) {
 				 // Move to the right
 				 player.body.velocity.x = 100;
 				 this.camera.follow(player);
-
 				 // player.animations.play('right');
 				 
 			 } else {
@@ -445,8 +445,10 @@ var playState = {
 		schuss.kill();
         this.bulletDie.play();
 		this.camera.follow()
-	}
-
-
+	},
+    
+    backgroundMusic:function() {
+        this.bgMusic.play();
+    }
 
 }

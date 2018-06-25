@@ -10,7 +10,7 @@ var winState = {
 	},
 
 	restart:function(){
-		game.state.start('menu');
+		game.state.start('boot');
 
 	}
 

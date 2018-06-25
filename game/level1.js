@@ -24,6 +24,7 @@ var playerName2;
 var hitCounterP1 = 0;
 var hitCounterP2 = 0;
 var winner;
+var land;
 
 var playState = {
 
@@ -52,6 +53,11 @@ var playState = {
 
 		//damit man nicht durch den Boden durch kann
 		ground.body.immovable = true;
+
+		this.land = this.add.bitmapData(1800, 1200);
+		//this.land.draw('land');
+		this.land.update();
+		this.land.addToWorld();
 
 
 		this.keyboard = game.input.keyboard;
@@ -173,7 +179,7 @@ var playState = {
         this.shotP1 = this.add.audio('shotPlayer1', 1, false, true);
         this.shotP2 = this.add.audio('shotPlayer2', 1, false, true);
         this.bgMusic = this.add.audio('backgroundMusic', 1, true, true);
-        this.backgroundMusic();
+       // this.backgroundMusic();
 
 	},
     
@@ -358,12 +364,15 @@ var playState = {
 
 			schiessen.reset(player.x - 8, player.y - 8);
                 
-            this.shotP1.play();
+			this.shotP1.play();
+			
 			game.physics.arcade.moveToPointer(schiessen, 800);
 			
 			player.body.velocity.x = 0;
 			
 			this.camera.follow(schiessen);
+
+			this.bulletVsLand(schiessen);
 
 			if (schiessen.y < 200) {
 
@@ -449,6 +458,31 @@ var playState = {
     
     backgroundMusic:function() {
         this.bgMusic.play();
-    }
+	},
+	
+	bulletVsLand:function(schiessen) {
+
+		//simple bound check
+	/*	if (this.schuss.x < 0 || this.schuss.x > this.game.world.width || this.schuss.y > this.game.height) {
+
+			schuss.kill();
+			return;
+		}
+		*/
+		var x = Math.floor(schiessen.x);
+		var y = Math.floor(schiessen.y);
+		var rgba = this.land.getPixel(x, y);
+
+		if (rgba.a > 0) {
+			this.land.blendDestinationOut();
+			this.land.circle(x, y, 16, 'rgba(0, 0, 0, 255');
+			this.land.blendReset();
+			this.land.update();
+
+
+
+		}
+
+	}
 
 }

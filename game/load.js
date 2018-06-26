@@ -15,12 +15,14 @@ var loadState = {
         game.load.spritesheet('healthBar', 'assets/Healthbar.png', 38, 14, 5);
         game.load.spritesheet('player1Bullet', 'assets/player1Bullet.png', 11, 11, 1);
         game.load.spritesheet('player2Bullet', 'assets/player2Bullet.png', 11, 11, 1);
-        game.load.image('bg1', 'assets/bg1.png');
+        game.load.image('bg2', 'assets/bg2.png');
         game.load.image('mainmenu', 'assets/mainmenu.png');
         game.load.image('button1', 'assets/button1.png');
         game.load.image('button2', 'assets/button2.png');
         game.load.image('button3', 'assets/button3.png');
         game.load.image('button4', 'assets/button4.png');
+        game.load.image('wand', 'assets/wand.png');
+        game.load.image('wand2', 'assets/wand2.png');
 
         //Sounds
         game.load.audio('bulletDie', 'assets/sounds/BulletDie.wav');

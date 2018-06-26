@@ -19,12 +19,18 @@ var projectile;
 var gameround = 0;
 var health1 = 4;
 var health2 = 4;
+var health1wand = 0;
+var health2wand = 0;
 var playerName1;
 var playerName2;
 var hitCounterP1 = 0;
 var hitCounterP2 = 0;
 var winner;
 var land;
+var wand1;
+var wand2;
+var wand3;
+var wand11;
 
 var playState = {
 
@@ -34,25 +40,37 @@ var playState = {
 
 		//hintergrund für das Spiel
 		//game.stage.backgroundColor = '#0072bc';
-		game.add.tileSprite(0, 0, 1800, 1200, 'bg1');
+		game.add.tileSprite(0, 0, 1800, 1200, 'bg2');
 	//	game.add.tileSprite(0, 0, 1000, 600, 'background');
 		game.world.setBounds(0, 0, 1800, 1200);
 
 		//Gruppe erstellen von Platformen
 		platforms = game.add.group();
+		waende = game.add.group();
 
 		//aktivieren die Physik der Gruppe platforms
 		platforms.enableBody = true;
+		waende.enableBody = true;
 
 		//erstellen einen Boden
-		var ground = platforms.create(-20, game.world.height - 200, 'ground');
+		var ground = platforms.create(-20, game.world.height - 160, 'ground');
+		var wand1 = waende.create(500, game.world.height - 206, 'wand');
+		var wand2 = waende.create(1430, game.world.height - 206, 'wand2');
+
 		
 
+	//	var ground = platforms.create (-20, game.world.height -350, 'wand');
+		//test objekt
+
+
 		//den Boden Skallieren
-		ground.scale.setTo(10, 2);
+		ground.scale.setTo(10, 1);
 
 		//damit man nicht durch den Boden durch kann
 		ground.body.immovable = true;
+
+		wand1.body.immovable = true;
+		wand2.body.immovable = true;
 
 		this.land = this.add.bitmapData(1800, 1200);
 		//this.land.draw('land');
@@ -68,7 +86,7 @@ var playState = {
 		game.physics.arcade.enable(this.win);
 
 		//Der Spieler und seine Position
-		player = game.add.sprite(32, game.world.height - 550, 'player1Model');
+		player = game.add.sprite(32, game.world.height - 250, 'player1Model');
 		//var hover = player.animations.add('hover');
 		player.animations.add('hover', [0,1,2,3,4,5], 7, true);
 		player.animations.add('jump', [2], 1, true);
@@ -117,7 +135,7 @@ var playState = {
 		var playerName1 = prompt("Name für Spieler 1:", "");
 		
 		//Der Spieler und seine Position
-		player2 = game.add.sprite(500, game.world.height - 450, 'player2Model');
+		player2 = game.add.sprite(1400, game.world.height - 450, 'player2Model');
         player2.animations.add('explosion' [2,3,4,5,6,7,8], 10, false, true);
 
 		//physic für den spieler einstellen.
@@ -161,9 +179,9 @@ var playState = {
 		//Pfeile hinzufügen um später sich bewegen zu können
 		cursors = game.input.keyboard.createCursorKeys();
 		
-		schuss.setAll('body.gravity.y', 150);
+		schuss.setAll('body.gravity.y', 350);
 		
-		schuss2.setAll('body.gravity.y', 150);
+		schuss2.setAll('body.gravity.y', 350);
 		
 		player2.addChild(sprite2);
 		player2.addChild(hb2);
@@ -179,7 +197,7 @@ var playState = {
         this.shotP1 = this.add.audio('shotPlayer1', 1, false, true);
         this.shotP2 = this.add.audio('shotPlayer2', 1, false, true);
         this.bgMusic = this.add.audio('backgroundMusic', 1, true, true);
-       // this.backgroundMusic();
+       //	this.backgroundMusic();
 
 	},
     
@@ -200,7 +218,13 @@ var playState = {
         
         game.physics.arcade.collide(schuss, platforms, this.bulletHandler, null, this);
         
-        game.physics.arcade.collide(schuss2, platforms, this.bulletHandler, null, this);
+		game.physics.arcade.collide(schuss2, platforms, this.bulletHandler, null, this);
+		
+		game.physics.arcade.collide(schuss, waende, this.bulletHandler, null, this);
+
+		game.physics.arcade.collide(schuss2, waende, this.bulletHandler, null, this);
+
+
         
         //this.backgroundMusic();
         
@@ -366,7 +390,7 @@ var playState = {
                 
 			this.shotP1.play();
 			
-			game.physics.arcade.moveToPointer(schiessen, 800);
+			game.physics.arcade.moveToPointer(schiessen, 900);
 			
 			player.body.velocity.x = 0;
 			
@@ -406,7 +430,8 @@ var playState = {
 	},
 
 		render:function() {
-			game.debug.spriteCoords(player, 32, 500);
+			//game.debug.spriteCoords(player, 32, 500);
+		//	game.debug.body(this.wand1);
 		},
 
 	collisionHandler:function (player, schuss) {
@@ -438,9 +463,13 @@ var playState = {
 
 	Finish:function(){
 		if (gameround == 0) {
+			this.backgroundMusicStop();
 			game.state.start('win2');
+			
 		} else {
-		game.state.start('win');
+			this.backgroundMusicStop();	
+			game.state.start('win');
+		
 		}
 	},
 
@@ -458,6 +487,10 @@ var playState = {
     
     backgroundMusic:function() {
         this.bgMusic.play();
+	},
+
+	backgroundMusicStop:function() {
+        this.bgMusic.pause();
 	},
 	
 	bulletVsLand:function(schiessen) {

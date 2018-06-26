@@ -1,10 +1,12 @@
 
+
 var sprite;
 var sprite2;
 var player;
 var player2;
 var cursors;
 var platforms;
+var waende;
 var spieler;
 var scoreText;
 var scoreText2;
@@ -30,7 +32,11 @@ var land;
 var wand1;
 var wand2;
 var wand3;
-var wand11;
+var wand4;
+var block1;
+var block2;
+var block;
+
 
 var playState = {
 
@@ -47,15 +53,27 @@ var playState = {
 		//Gruppe erstellen von Platformen
 		platforms = game.add.group();
 		waende = game.add.group();
+		block = game.add.group();
+
+
 
 		//aktivieren die Physik der Gruppe platforms
 		platforms.enableBody = true;
 		waende.enableBody = true;
+		block.enableBody = true;
 
 		//erstellen einen Boden
-		var ground = platforms.create(-20, game.world.height - 160, 'ground');
-		var wand1 = waende.create(500, game.world.height - 206, 'wand');
-		var wand2 = waende.create(1430, game.world.height - 206, 'wand2');
+		var ground = platforms.create(-20, game.world.height - 130, 'ground');  //160
+		
+		var wand1 = waende.create(300, game.world.height - 178, 'wand');
+		var wand2 = waende.create(550, game.world.height - 178, 'wand');
+		var wand3 = waende.create(1430, game.world.height - 174, 'wand2');
+		var wand4 = waende.create(1100, game.world.height - 174, 'wand2');
+
+		var block1 = block.create(900, game.world.height - 178, 'block' );
+		var block2 = block.create(900, game.world.height - 230, 'block' );
+
+
 
 		
 
@@ -71,6 +89,16 @@ var playState = {
 
 		wand1.body.immovable = true;
 		wand2.body.immovable = true;
+		wand3.body.immovable = true;
+		wand4.body.immovable = true;
+
+		block1.body.immovable = true;
+		block2.body.immovable = true;
+
+		block1.alpha =0
+		block2.alpha =0
+
+		ground.alpha =0
 
 		this.land = this.add.bitmapData(1800, 1200);
 		//this.land.draw('land');
@@ -113,6 +141,20 @@ var playState = {
         hb2.animations.add('health2', [2], 1, true);
         hb2.animations.add('health3', [1], 1, true);
         hb2.animations.add('health4', [0], 1, true);
+		hb2.anchor.setTo(0, 0);
+
+				//Sprite für wände
+		hb1 = game.make.sprite(7, -15, 'healthBar');
+		hb1.animations.add('health1', [3], 1, true);
+		hb1.animations.add('health2', [2], 1, true);
+		hb1.animations.add('health3', [1], 1, true);
+		hb1.animations.add('health4', [0], 1, true);
+		hb1.anchor.setTo(0, 0);
+		hb2 = game.make.sprite(7, -15, 'healthBar');
+		hb2.animations.add('health1', [3], 1, true);
+		hb2.animations.add('health2', [2], 1, true);
+		hb2.animations.add('health3', [1], 1, true);
+		hb2.animations.add('health4', [0], 1, true);
 		hb2.anchor.setTo(0, 0);
 
 		//Sprite für die Waffe
@@ -211,6 +253,10 @@ var playState = {
 		var hitPlatform = game.physics.arcade.collide(player, platforms);
             
 		var hitPlatform = game.physics.arcade.collide(player2, platforms);
+
+		//var hitPlatform = game.physics.arcade.collide(player, block);
+            
+		//var hitPlatform = game.physics.arcade.collide(player2, block);
 		 
 		game.physics.arcade.collide(player2, schuss, this.collisionHandler, null, this);
 		 

@@ -18,11 +18,7 @@ var menuState = {
 	//	startLabel.setShadow(1, 1, 'rgba(0, 0, 0, 0.8)', 1);
 
 
-		var wkey = game.input.keyboard.addKey(Phaser.Keyboard.W);
-
         this.startMusic = this.add.audio('startSound', 1, false, true);
-
-		wkey.onDown.addOnce(this.start,this);
 
 		button1 = game.add.button(game.world.centerX - 80, 530, 'button1', this.actionOnClick, this, 2, 1, 0);
 

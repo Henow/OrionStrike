@@ -30,7 +30,6 @@ var playerName2;
 var hitCounterP1 = 0;
 var hitCounterP2 = 0;
 var winner;
-var land;
 var wand1;
 var wand2;
 var wand3;
@@ -47,6 +46,8 @@ var playState = {
 
 
 	create:function(){
+        
+        this.goFullScreen;
 
 		//hintergrund für das Spiel
 		//game.stage.backgroundColor = '#0072bc';
@@ -77,17 +78,9 @@ var playState = {
 		var block1 = block.create(900, game.world.height - 178, 'block' );
 		var block2 = block.create(900, game.world.height - 230, 'block' );
 
-
-
-		
-
-	//	var ground = platforms.create (-20, game.world.height -350, 'wand');
-		//test objekt
-
-
 		//den Boden Skallieren
 		ground.scale.setTo(10, 1);
-
+        
 		//damit man nicht durch den Boden durch kann
 		ground.body.immovable = true;
 
@@ -103,11 +96,6 @@ var playState = {
 		block2.alpha =0
 
 		ground.alpha =0
-
-		this.land = this.add.bitmapData(1800, 1200);
-		//this.land.draw('land');
-		this.land.update();
-		this.land.addToWorld();
 
 
 		this.keyboard = game.input.keyboard;
@@ -145,20 +133,6 @@ var playState = {
         hb2.animations.add('health2', [2], 1, true);
         hb2.animations.add('health3', [1], 1, true);
         hb2.animations.add('health4', [0], 1, true);
-		hb2.anchor.setTo(0, 0);
-
-				//Sprite für wände
-		hb1 = game.make.sprite(7, -15, 'healthBar');
-		hb1.animations.add('health1', [3], 1, true);
-		hb1.animations.add('health2', [2], 1, true);
-		hb1.animations.add('health3', [1], 1, true);
-		hb1.animations.add('health4', [0], 1, true);
-		hb1.anchor.setTo(0, 0);
-		hb2 = game.make.sprite(7, -15, 'healthBar');
-		hb2.animations.add('health1', [3], 1, true);
-		hb2.animations.add('health2', [2], 1, true);
-		hb2.animations.add('health3', [1], 1, true);
-		hb2.animations.add('health4', [0], 1, true);
 		hb2.anchor.setTo(0, 0);
 
 		//Sprite für die Waffe
@@ -261,6 +235,10 @@ var playState = {
 		//var hitPlatform = game.physics.arcade.collide(player, block);
             
 		//var hitPlatform = game.physics.arcade.collide(player2, block);
+        
+        game.physics.arcade.collide(player, block, this.boundHandler, null, this);
+        
+        game.physics.arcade.collide(player2, block, this.boundHandler2, null, this);
 		 
 		game.physics.arcade.collide(player2, schuss, this.collisionHandler, null, this);
 		 
@@ -446,8 +424,6 @@ var playState = {
 			
 			this.camera.follow(schiessen);
 
-			this.bulletVsLand(schiessen);
-
 			if (schiessen.y < 200) {
 
 				this.removeSchuss(schuss);
@@ -455,8 +431,6 @@ var playState = {
 
 			gameround = 1;
 
-
-			
 				
 			} else if (gameround == 1) {
 				
@@ -467,6 +441,7 @@ var playState = {
 				schiessen2.reset(player2.x - 8, player2.y - 8);
 
                 this.shotP2.play();
+                
 				game.physics.arcade.moveToPointer(schiessen2, 800);
 				
 				player2.body.velocity.x = 0;
@@ -522,6 +497,16 @@ var playState = {
 		
 		}
 	},
+    
+    boundHandler:function(player, block) {
+        this.player.body.velocity.x = -300;
+        //gameround = 1;
+    },
+    
+    boundHandler2:function(player2, block) {
+        this.player2.body.velocity.x = 300;
+        //gameround = 0;
+    },
 
 	removeSchuss:function(schuss) {
 		schuss.kill();
@@ -542,30 +527,12 @@ var playState = {
 	backgroundMusicStop:function() {
         this.bgMusic.pause();
 	},
-	
-	bulletVsLand:function(schiessen) {
-
-		//simple bound check
-	/*	if (this.schuss.x < 0 || this.schuss.x > this.game.world.width || this.schuss.y > this.game.height) {
-
-			schuss.kill();
-			return;
-		}
-		*/
-		var x = Math.floor(schiessen.x);
-		var y = Math.floor(schiessen.y);
-		var rgba = this.land.getPixel(x, y);
-
-		if (rgba.a > 0) {
-			this.land.blendDestinationOut();
-			this.land.circle(x, y, 16, 'rgba(0, 0, 0, 255');
-			this.land.blendReset();
-			this.land.update();
-
-
-
-		}
-
+    
+    goFullScreen:function() {
+		this.game.scale.pageAlignHorizontally = true;
+		this.game.scale.pageAlignVertically = true;
+		this.game.scale.scaleMode = this.Phaser.ScaleManager.SHOW_ALL;
+		this.game.scale.setScreenSize(true);
 	}
 
 }

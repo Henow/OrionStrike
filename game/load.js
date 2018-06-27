@@ -2,10 +2,7 @@ var loadState = {
 	preload:function(){
 		var loadingLabel = game.add.text(80,150,'Loading....', {font:'30px Courier', fill: '#FFF'});
 
-
-      //  game.load.image('figur', 'assets/figurtest.png');
         game.load.image('ground', 'assets/ground.png');
-        game.load.image('waffe', 'assets/weapon.png');
         game.load.image('schuss', 'assets/Schuss.png');
         game.load.image('background', 'assets/hintergrund.png');
         game.load.spritesheet('player1Model', 'assets/player1Model.png', 50, 50, 13);

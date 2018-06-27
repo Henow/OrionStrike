@@ -8,7 +8,7 @@ var bootState = {
 	},
 
 	create:function(){
-		this.goFullScreen
+		this.goFullScreen;
 
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 

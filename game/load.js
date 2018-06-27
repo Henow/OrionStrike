@@ -4,7 +4,6 @@ var loadState = {
 
         game.load.image('ground', 'assets/ground.png');
         game.load.image('schuss', 'assets/Schuss.png');
-        game.load.image('background', 'assets/hintergrund.png');
         game.load.spritesheet('player1Model', 'assets/player1Model.png', 50, 50, 13);
         game.load.spritesheet('player2Model', 'assets/player2Model.png', 50, 50, 8);
         game.load.spritesheet('player1Weapon', 'assets/player1Weapon.png', 32, 13, 1);
@@ -13,7 +12,8 @@ var loadState = {
         game.load.spritesheet('player1Bullet', 'assets/player1Bullet.png', 11, 11, 1);
         game.load.spritesheet('player2Bullet', 'assets/player2Bullet.png', 11, 11, 1);
         game.load.spritesheet('waende2', 'assets/waende2.png', 11, 11);
-        game.load.image('bg2', 'assets/bg2.png');
+        game.load.image('bg1', 'assets/City.png');
+        game.load.image('bg2', 'assets/Cave.png');
         game.load.image('mainmenu', 'assets/mainmenu.png');
         game.load.image('button1', 'assets/button1.png');
         game.load.image('button2', 'assets/button2.png');

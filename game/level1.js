@@ -52,7 +52,7 @@ var playState = {
 
 		//hintergrund für das Spiel
 		//game.stage.backgroundColor = '#0072bc';
-		game.add.tileSprite(0, 0, 1800, 1200, 'bg2');
+		game.add.tileSprite(0, 0, 1800, 1200, 'bg1');
 	//	game.add.tileSprite(0, 0, 1000, 600, 'background');
 		game.world.setBounds(0, 0, 1800, 1200);
 
@@ -194,10 +194,10 @@ var playState = {
 
 
 		//einfach nur einen text 
-		scoreText = game.add.text(100, 16, 'Player 1: '+playerName1, /*+' : ', /* +health1,*/ { fontSize: '32px', fill: '#000' });
-		scoreText.fixedToCamera = true;
-		scoreText2 = game.add.text(500, 16, 'Player 2: '+playerName2, /*+' : ', /* +health2,*/ { fontSize: '32px', fill: '#000' });
-		scoreText2.fixedToCamera = true;
+		this.scoreText = game.add.text(50, 16, 'Player 1: '+playerName1, /*+' : ', /* +health1,*/ { font: '32px Orbitron', fill: '#000' });
+		this.scoreText.fixedToCamera = true;
+		this.scoreText2 = game.add.text(500, 16, 'Player 2: '+playerName2, /*+' : ', /* +health2,*/ { font: '32px Orbitron', fill: '#000' });
+		this.scoreText2.fixedToCamera = true;
 
 		//Pfeile hinzufügen um später sich bewegen zu können
 		cursors = game.input.keyboard.createCursorKeys();

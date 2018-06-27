@@ -72,14 +72,14 @@ var playState2 = {
 		block.enableBody = true;
 
 		//erstellen einen Boden
-		var ground = platforms.create(-20, game.world.height - 130, 'ground');  //160
+		var ground = platforms.create(-20, game.world.height - 130+50, 'ground');  //160
 		
-		var wand1 = waende.create(300, game.world.height - 178, 'wand');
-		var wand2 = waende.create(550, game.world.height - 178, 'wand');
-		var wand3 = waende2.create(1430, game.world.height - 174, 'wand2');
-		var wand4 = waende2.create(1100, game.world.height - 174, 'wand2');
+		var wand1 = waende.create(300, game.world.height - 178+50, 'wand');
+		var wand2 = waende.create(550, game.world.height - 178+50, 'wand');
+		var wand3 = waende2.create(1430, game.world.height - 178+50, 'wand2');
+		var wand4 = waende2.create(1100, game.world.height - 178+50, 'wand2');
 
-		var block1 = block.create(825, game.world.height - 500 , 'block' );
+		var block1 = block.create(825, game.world.height - 500+50 , 'block' );
 
 
 		//den Boden Skallieren
@@ -195,10 +195,10 @@ var playState2 = {
 
 
 		//einfach nur einen text 
-		scoreText = game.add.text(100, 16, 'Player 1: '+playerName1, /*+' : ', /* +health1,*/ { fontSize: '32px', fill: '#000' });
-		scoreText.fixedToCamera = true;
-		scoreText2 = game.add.text(500, 16, 'Player 2: '+playerName2, /*+' : ', /* +health2,*/ { fontSize: '32px', fill: '#000' });
-		scoreText2.fixedToCamera = true;
+		this.scoreText = game.add.text(50, 16, 'Player 1: '+playerName1, /*+' : ', /* +health1,*/ { font: '32px Orbitron', fill: '#ffffff' });
+		this.scoreText.fixedToCamera = true;
+		this.scoreText2 = game.add.text(500, 16, 'Player 2: '+playerName2, /*+' : ', /* +health2,*/ { font: '32px Orbitron', fill: '#ffffff' });
+		this.scoreText2.fixedToCamera = true;
 
 		//Pfeile hinzufügen um später sich bewegen zu können
 		cursors = game.input.keyboard.createCursorKeys();

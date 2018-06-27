@@ -21,8 +21,10 @@ var projectile;
 var gameround = 0;
 var health1 = 4;
 var health2 = 4;
-var health1wand = 0;
-var health2wand = 0;
+var wand1health = 2;
+var wand2health = 2;
+var wand3health = 2;
+var wand4health = 2;
 var playerName1;
 var playerName2;
 var hitCounterP1 = 0;
@@ -241,7 +243,7 @@ var playState = {
         this.shotP1 = this.add.audio('shotPlayer1', 1, false, true);
         this.shotP2 = this.add.audio('shotPlayer2', 1, false, true);
         this.bgMusic = this.add.audio('backgroundMusic', 1, true, true);
-       //	this.backgroundMusic();
+       	this.backgroundMusic();
 
 	},
     
@@ -507,9 +509,7 @@ var playState = {
 		if (gameround == 0) {
 			this.camera.follow(player);
 		} else this.camera.follow(player2);
-	}, 
-
-		
+	}, 	
 
 	Finish:function(){
 		if (gameround == 0) {

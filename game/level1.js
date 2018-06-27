@@ -36,6 +36,8 @@ var wand4;
 var block1;
 var block2;
 var block;
+var count1;
+var count2;
 
 
 var playState = {
@@ -505,7 +507,9 @@ var playState = {
 		if (gameround == 0) {
 			this.camera.follow(player);
 		} else this.camera.follow(player2);
-    }, 
+	}, 
+
+		
 
 	Finish:function(){
 		if (gameround == 0) {

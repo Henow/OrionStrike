@@ -41,11 +41,17 @@ var menuState = {
 		  game.state.start('level2');
 	  },
 
+	  start3:function(){
+		  game.state.start('menu2');
+	  },
+
 
 	actionOnClick:function() {
 		button1.kill();
-		button2 = game.add.button(game.world.centerX - 180, 526, 'button2', this.actionOnClick2, this, 2, 1, 0);
-		button3 = game.add.button(game.world.centerX + 40, 530, 'button3', this.actionOnClick3, this, 2, 1, 0);
+		button2 = game.add.button(game.world.centerX - 320, 526, 'button2', this.actionOnClick2, this, 2, 1, 0);
+		button3 = game.add.button(game.world.centerX - 100, 530, 'button3', this.actionOnClick3, this, 2, 1, 0);
+		button4 = game.add.button(game.world.centerX + 120, 525, 'button4', this. actionOnClick4, this, 2, 1, 0);
+		
 	},
 
 	actionOnClick2:function() {
@@ -54,7 +60,16 @@ var menuState = {
 
 	actionOnClick3:function() {
 		this.start2();
-	}
+	},
+
+	actionOnClick4:function() {
+	//	game.add.tileSprite(79, 60, 641, 480, 'info');
+		button5 = game.add.button(79, 60, 'info', this. actionOnClick5, this, 2, 1, 0);
+	},
+
+	actionOnClick5:function() {
+			button5.kill();
+		}
 
 
 }

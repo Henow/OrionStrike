@@ -10,7 +10,6 @@
         <script type="text/javascript" src="game/boot.js"></script>
         <script type="text/javascript" src="game/load.js"></script>
         <script type="text/javascript" src="game/menu.js"></script>
-        <script type="text/javascript" src="game/menu2.js"></script>
         <script type="text/javascript" src="game/level1.js"></script>
         <script type="text/javascript" src="game/level2.js"></script>
         <script type="text/javascript" src="game/win.js"></script>
@@ -21,13 +20,14 @@
           game.state.add('boot', bootState);
           game.state.add('load', loadState);
           game.state.add('menu', menuState);
-          game.state.add('menu2', menuState2);
           game.state.add('level1', playState);
           game.state.add('level2', playState2);
           game.state.add('win',  winState);
           game.state.add('win2', winState2);
 
           game.state.start('boot');
+
+          
         </script>
     </head>
 

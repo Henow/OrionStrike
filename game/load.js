@@ -26,6 +26,7 @@ var loadState = {
         game.load.image('win1', 'assets/win.png');
         game.load.image('win2', 'assets/win2.png');
         game.load.image('info', 'assets/info.png');
+        game.load.image('tutorial', 'assets/tutorial.png');
 
         //Sounds
         game.load.audio('bulletDie', 'assets/sounds/BulletDie.wav');

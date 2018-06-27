@@ -29,12 +29,14 @@ var menuState = {
 
 	start:function(){
 	  this.startMusic.play();
-		game.state.start('level1');
+		//game.state.start('level1');
+        button6 = game.add.button(100, 100, 'tutorial', this.actionOnClick6, this, 2, 1, 0);
 	},
 
 	start2:function(){
 		this.startMusic.play();
-		  game.state.start('level2');
+		 // game.state.start('level2');
+        button7 = game.add.button(100, 100, 'tutorial', this.actionOnClick7, this, 2, 1, 0);
 	  },
 
 	  start3:function(){
@@ -65,6 +67,16 @@ var menuState = {
 
 	actionOnClick5:function() {
 			button5.kill();
+		},
+    
+    	actionOnClick6:function() {
+			button6.kill();
+            game.state.start('level1');
+		},
+    
+    	actionOnClick7:function() {
+			button7.kill();
+            game.state.start('level2');
 		}
 
 

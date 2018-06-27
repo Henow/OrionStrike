@@ -40,15 +40,20 @@ var block;
 var count1;
 var count2;
 var waende2;
+var button
 
 
 var playState = {
 
-
+    
 
 	create:function(){
         
-        this.goFullScreen;
+        var button;
+        
+        button1 = game.add.button(0, 0, 'tutorial', this.actionOnClick, this, 2, 1, 0);
+        
+        this.goFullScreens;
 
 		//hintergrund für das Spiel
 		//game.stage.backgroundColor = '#0072bc';

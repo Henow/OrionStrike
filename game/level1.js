@@ -35,10 +35,11 @@ var wand2;
 var wand3;
 var wand4;
 var block1;
-var block2;
+
 var block;
 var count1;
 var count2;
+var waende2;
 
 
 var playState = {
@@ -58,6 +59,7 @@ var playState = {
 		//Gruppe erstellen von Platformen
 		platforms = game.add.group();
 		waende = game.add.group();
+		waende2 = game.add.group();
 		block = game.add.group();
 
 
@@ -65,6 +67,7 @@ var playState = {
 		//aktivieren die Physik der Gruppe platforms
 		platforms.enableBody = true;
 		waende.enableBody = true;
+		waende2.enableBody = true;
 		block.enableBody = true;
 
 		//erstellen einen Boden
@@ -72,11 +75,11 @@ var playState = {
 		
 		var wand1 = waende.create(300, game.world.height - 178, 'wand');
 		var wand2 = waende.create(550, game.world.height - 178, 'wand');
-		var wand3 = waende.create(1430, game.world.height - 174, 'wand2');
-		var wand4 = waende.create(1100, game.world.height - 174, 'wand2');
+		var wand3 = waende2.create(1430, game.world.height - 174, 'wand2');
+		var wand4 = waende2.create(1100, game.world.height - 174, 'wand2');
 
-		var block1 = block.create(900, game.world.height - 178, 'block' );
-		var block2 = block.create(900, game.world.height - 230, 'block' );
+		var block1 = block.create(825, game.world.height - 500 , 'block' );
+
 
 		//den Boden Skallieren
 		ground.scale.setTo(10, 1);
@@ -90,10 +93,10 @@ var playState = {
 		wand4.body.immovable = true;
 
 		block1.body.immovable = true;
-		block2.body.immovable = true;
+
 
 		block1.alpha =0
-		block2.alpha =0
+
 
 		ground.alpha =0
 
@@ -224,7 +227,8 @@ var playState = {
 
     
 	update:function(){
-		this.player.collideWorldBounds = true;
+	//	this.player.collideWorldBounds = true;
+	//	this.player2.collideWorldBounds = true;
 
 
 		//verhindern dass player und platforms collide
@@ -248,7 +252,7 @@ var playState = {
         
 		game.physics.arcade.collide(schuss2, platforms, this.bulletHandler, null, this);
 		
-		game.physics.arcade.collide(schuss, waende, this.bulletHandler, null, this);
+		game.physics.arcade.collide(schuss, waende2, this.bulletHandler, null, this);
 
 		game.physics.arcade.collide(schuss2, waende, this.bulletHandler, null, this);
 
@@ -414,7 +418,7 @@ var playState = {
 
 			var schiessen = schuss.getFirstDead();
 
-			schiessen.reset(player.x - 8, player.y - 8);
+			schiessen.reset(player.x + 25, player.y  );
                 
 			this.shotP1.play();
 			
@@ -499,12 +503,12 @@ var playState = {
 	},
     
     boundHandler:function(player, block) {
-        this.player.body.velocity.x = -300;
+       // this.player.body.velocity.x = -300;
         //gameround = 1;
     },
     
     boundHandler2:function(player2, block) {
-        this.player2.body.velocity.x = 300;
+        //this.player2.body.velocity.x = 300;
         //gameround = 0;
     },
 

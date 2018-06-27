@@ -22,7 +22,7 @@ var loadState = {
         game.load.image('button5', 'assets/button5.png');
         game.load.image('wand', 'assets/wand.png');
         game.load.image('wand2', 'assets/wand222.png');
-        game.load.image('block', 'assets/wand222.png');
+        game.load.image('block', 'assets/block.png');
         game.load.image('win1', 'assets/win.png');
         game.load.image('win2', 'assets/win2.png');
         game.load.image('info', 'assets/info.png');

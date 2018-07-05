@@ -249,9 +249,9 @@ var playState = {
         
         game.physics.arcade.collide(player2, block, this.boundHandler2, null, this);
 		 
-		game.physics.arcade.collide(player2, schuss, this.collisionHandler, null, this);
+		game.physics.arcade.overlap(player2, schuss, this.collisionHandler, null, this);
 		 
-        game.physics.arcade.collide(player, schuss2, this.collisionHandler2, null, this);
+        game.physics.arcade.overlap(player, schuss2, this.collisionHandler2, null, this);
         
         game.physics.arcade.collide(schuss, platforms, this.bulletHandler, null, this);
         
@@ -427,7 +427,7 @@ var playState = {
                 
 			this.shotP1.play();
 			
-			game.physics.arcade.moveToPointer(schiessen, 900);
+			game.physics.arcade.moveToPointer(schiessen, 800);
 			
 			player.body.velocity.x = 0;
 			
